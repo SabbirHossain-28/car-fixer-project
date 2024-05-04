@@ -1,9 +1,39 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Navbar from "../../Shared/Header/Navbar";
 import signupImg from "../../assets/images/login/login.svg";
 import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthContextProvider/AuthContextProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const {createUser,updateUserInfo,signOutUser}=useContext(AuthContext);
+    const handleSubmit=e=>{
+        e.preventDefault();
+        const form=e.target;
+        const name=form.name.value;
+        const email=form.email.value;
+        const password=form.password.value;
+        console.log(name,email,password);
+        createUser(email,password)
+        .then(userCredential=>{
+          updateUserInfo(name)
+          .then(()=>{
+            if(userCredential){
+              console.log(userCredential.user);
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Registration Successful",
+                showConfirmButton: true,
+              });
+              form.reset();
+              signOutUser();
+              Navigate('/signin')
+            }
+          })
+        })
+    }
   return (
     <div className="max-w-7xl mx-auto mb-12">
       <div>
@@ -18,7 +48,7 @@ const SignUp = () => {
             <h2>Sign Up</h2>
           </div>
           <div>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
                 <label htmlFor="name" className="block text-[#444444] text-xl">
                   Name
