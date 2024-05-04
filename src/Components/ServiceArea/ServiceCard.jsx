@@ -13,7 +13,7 @@ const ServiceCard = ({ service }) => {
         <div className="card-body">
           <h2 className="card-title text-[#444444] font-bold">{title}</h2>
           <div className="card-actions flex items-center">
-            <p className="text-[#FF3811] font-bold">Price:{price}</p>
+            <p className="text-[#FF3811] font-bold">Price:${price}</p>
             <button className="btn btn-ghost text-[#FF3811] text-xl hover:bg-[#FF3811] hover:text-white hover:scale-90">
               <Link to={`/serviceType/${_id}`}>
                 <FaArrowRightLong></FaArrowRightLong>

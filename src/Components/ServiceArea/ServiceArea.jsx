@@ -12,7 +12,7 @@ const ServiceArea = () => {
 
     return (
         <div className="mt-10">
-            <div className="text-center">
+            <div className="text-center space-y-2">
                 <h4 className="text-xl text-[#FF3811] font-bold">Service</h4>
                 <h2 className="text-4xl text-[#151515] font-bold">Our Service Area</h2>
                 <p className="text-sm text-[#737373]">the majority have suffered alteration in some form, by injected humour, or randomised words which do not look even slightly believable. </p>
