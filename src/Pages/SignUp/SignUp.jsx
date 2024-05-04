@@ -1,4 +1,4 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Shared/Header/Navbar";
 import signupImg from "../../assets/images/login/login.svg";
 import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
   const {createUser,updateUserInfo,signOutUser}=useContext(AuthContext);
+  const navigate=useNavigate();
     const handleSubmit=e=>{
         e.preventDefault();
         const form=e.target;
@@ -29,7 +30,7 @@ const SignUp = () => {
               });
               form.reset();
               signOutUser();
-              Navigate('/signin')
+              navigate("/signin")
             }
           })
         })
@@ -100,7 +101,7 @@ const SignUp = () => {
                     <FaLinkedinIn></FaLinkedinIn>
                     <FaGoogle></FaGoogle>
                 </div>
-                <p>Already have an account? <span className="link link-primary"><Link to="/signIn">Sign In</Link></span></p>
+                <p>Already have an account? <span className="link link-primary"><Link to="/signin">Sign In</Link></span></p>
             </div>
           </div>
         </div>

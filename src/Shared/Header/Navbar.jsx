@@ -20,6 +20,9 @@ const Navbar = () => {
   <li>
     <NavLink to="/signup">SignUp</NavLink>
   </li>
+  <li>
+    <NavLink to="/signin">SignIn</NavLink>
+  </li>
   </>
   return (
     <div>
