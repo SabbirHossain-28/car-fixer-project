@@ -17,6 +17,9 @@ const Navbar = () => {
   <li>
     <NavLink to="/contact">Contact</NavLink>
   </li>
+  <li>
+    <NavLink to="/signup">SignUp</NavLink>
+  </li>
   </>
   return (
     <div>
