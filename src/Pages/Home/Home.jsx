@@ -1,4 +1,4 @@
-import AboutUs from "../../Components/Banner/AboutUs/AboutUs";
+import AboutUs from "../../Components/AboutUs/AboutUs";
 import Banner from "../../Components/Banner/Banner";
 import Navbar from "../../Shared/Header/Navbar";
 
