@@ -1,6 +1,7 @@
 import AboutUs from "../../Components/AboutUs/AboutUs";
 import Banner from "../../Components/Banner/Banner";
 import ContactInfo from "../../Components/ContactInfo/ContactInfo";
+import Products from "../../Components/Products/Products";
 import ServiceArea from "../../Components/ServiceArea/ServiceArea";
 import Footer from "../../Shared/Footer/Footer";
 import Navbar from "../../Shared/Header/Navbar";
@@ -14,6 +15,7 @@ const Home = () => {
             <AboutUs></AboutUs>
             <ServiceArea></ServiceArea>
             <ContactInfo></ContactInfo>
+            <Products></Products>
             </div>
             <Footer></Footer>
         </div>

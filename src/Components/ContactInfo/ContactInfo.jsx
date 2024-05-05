@@ -26,8 +26,6 @@ const ContactInfo = () => {
                         <p className="text-white text-2xl font-bold">Liza Street, New York</p>
                     </div>
                 </div>
-                <dvi></dvi>
-                <dvi></dvi>
             </div>
         </div>
     );
