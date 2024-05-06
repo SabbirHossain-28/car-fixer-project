@@ -38,9 +38,6 @@ const BookingOrder = () => {
               <p className="text-white">
                 <Link to="/">Home</Link>/Booking Orders
               </p>
-              <p className="text-white font-bold text-center">
-                User:{user?.email}
-              </p>
             </div>
           </div>
         </div>
