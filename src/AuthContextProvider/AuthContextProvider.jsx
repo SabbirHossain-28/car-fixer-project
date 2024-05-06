@@ -32,7 +32,7 @@ const AuthContextProvider = ({ children }) => {
     });
   };
   const signOutUser = () => {
-    setLoading(true)
+    setLoading(true);
     return signOut(auth);
   };
 

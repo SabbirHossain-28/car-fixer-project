@@ -1,29 +1,49 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../AuthContextProvider/AuthContextProvider";
 
 const Navbar = () => {
-  const navbarLinks=<>
-  <li>
-    <NavLink to="/">Home</NavLink>
-  </li>
-  <li>
-    <NavLink to="/about">About</NavLink>
-  </li>
-  <li>
-    <NavLink to="/services">Services</NavLink>
-  </li>
-  <li>
-    <NavLink to="/blog">Blog</NavLink>
-  </li>
-  <li>
-    <NavLink to="/contact">Contact</NavLink>
-  </li>
-  <li>
-    <NavLink to="/signup">SignUp</NavLink>
-  </li>
-  <li>
-    <NavLink to="/signin">SignIn</NavLink>
-  </li>
-  </>
+  const { user, signOutUser } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    signOutUser()
+      .then(() => {})
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const navbarLinks = (
+    <>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">About</NavLink>
+      </li>
+      <li>
+        <NavLink to="/services">Services</NavLink>
+      </li>
+      <li>
+        <NavLink to="/blog">Blog</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">Contact</NavLink>
+      </li>
+      <li>
+        <NavLink to="/signup">SignUp</NavLink>
+      </li>
+      {user?.email ? (
+        <li>
+          <button onClick={handleLogout}>Sign out</button>
+        </li>
+      ) : (
+        <li>
+          <Link to="/signin">Sign in</Link>
+        </li>
+      )}
+    </>
+  );
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -52,15 +72,17 @@ const Navbar = () => {
               {navbarLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-3xl font-bold gap-0">Car<span className="text-[#FF3811]">Fixer</span></a>
+          <a className="btn btn-ghost text-3xl font-bold gap-0">
+            Car<span className="text-[#FF3811]">Fixer</span>
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {navbarLinks}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navbarLinks}</ul>
         </div>
         <div className="navbar-end">
-          <a className=" border border-[#FF3811] p-2 px-3 text-xl font-semibold text-[#FF3811] rounded-md hover:bg-[#FF3811] hover:text-white hover:scale-90 transition-all duration-300">Appointment</a>
+          <a className=" border border-[#FF3811] p-2 px-3 text-xl font-semibold text-[#FF3811] rounded-md hover:bg-[#FF3811] hover:text-white hover:scale-90 transition-all duration-300">
+            Appointment
+          </a>
         </div>
       </div>
     </div>

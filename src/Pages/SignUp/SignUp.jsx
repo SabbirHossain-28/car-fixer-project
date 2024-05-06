@@ -7,34 +7,32 @@ import { AuthContext } from "../../AuthContextProvider/AuthContextProvider";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const {createUser,updateUserInfo,signOutUser}=useContext(AuthContext);
-  const navigate=useNavigate();
-    const handleSubmit=e=>{
-        e.preventDefault();
-        const form=e.target;
-        const name=form.name.value;
-        const email=form.email.value;
-        const password=form.password.value;
-        console.log(name,email,password);
-        createUser(email,password)
-        .then(userCredential=>{
-          updateUserInfo(name)
-          .then(()=>{
-            if(userCredential){
-              console.log(userCredential.user);
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Registration Successful",
-                showConfirmButton: true,
-              });
-              form.reset();
-              signOutUser();
-              navigate("/signin")
-            }
-          })
-        })
-    }
+  const { createUser, updateUserInfo, signOutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, email, password);
+    createUser(email, password).then((userCredential) => {
+      updateUserInfo(name).then(() => {
+        if (userCredential) {
+          console.log(userCredential.user);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Registration Successful",
+            showConfirmButton: true,
+          });
+          form.reset();
+          signOutUser();
+          navigate("/signin");
+        }
+      });
+    });
+  };
   return (
     <div className="max-w-7xl mx-auto mb-12">
       <div>
@@ -95,13 +93,18 @@ const SignUp = () => {
               </div>
             </form>
             <div className="text-center space-y-6 mt-8">
-                <p className="text-xl">Or Sign Up With</p>
-                <div className="flex justify-center gap-4 text-xl">
-                    <FaFacebook></FaFacebook>
-                    <FaLinkedinIn></FaLinkedinIn>
-                    <FaGoogle></FaGoogle>
-                </div>
-                <p>Already have an account? <span className="link link-primary"><Link to="/signin">Sign In</Link></span></p>
+              <p className="text-xl">Or Sign Up With</p>
+              <div className="flex justify-center gap-4 text-xl">
+                <FaFacebook></FaFacebook>
+                <FaLinkedinIn></FaLinkedinIn>
+                <FaGoogle></FaGoogle>
+              </div>
+              <p>
+                Already have an account?{" "}
+                <span className="link link-primary">
+                  <Link to="/signin">Sign In</Link>
+                </span>
+              </p>
             </div>
           </div>
         </div>

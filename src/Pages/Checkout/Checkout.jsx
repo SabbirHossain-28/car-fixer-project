@@ -7,50 +7,50 @@ import Swal from "sweetalert2";
 
 const Checkout = () => {
   const loadedServiceData = useLoaderData();
-  const {user}=useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   console.log(user);
-  const {title,price,_id,img}=loadedServiceData;
+  const { title, price, _id, img } = loadedServiceData;
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const form=e.target;
-    const name =user?.displayName;
-    const date=form.date.value;
-    const email=user?.email;
-    const cost=form.cost.value;
-    const order={
-        customerName:name,
-        email,
-        date,
-        total_cost:cost,
-        service_id:_id,
-        service:title,
-        img,
-    }
+    const form = e.target;
+    const name = user?.displayName;
+    const date = form.date.value;
+    const email = user?.email;
+    const cost = form.cost.value;
+    const order = {
+      customerName: name,
+      email,
+      date,
+      total_cost: cost,
+      service_id: _id,
+      service: title,
+      img,
+    };
     console.log(order);
 
-    fetch("http://localhost:5000/bookings",{
-        method:"POST",
-        headers:{
-            "content-type":"application/json"
-        },
-        body:JSON.stringify(order)
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(order),
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.insertedId){
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Order Confirm Successfully",
-                showConfirmButton: true,
-              });
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Order Confirm Successfully",
+            showConfirmButton: true,
+          });
         }
-    })
-    .catch(error =>{
+      })
+      .catch((error) => {
         console.error(error);
-    })
-  }
+      });
+  };
   return (
     <div className="max-w-7xl mx-auto mb-10">
       <div>
@@ -76,9 +76,12 @@ const Checkout = () => {
       </div>
       <div className="mt-16 bg-[#F3F3F3]">
         <form onSubmit={handleSubmit} className="space-y-4 p-8">
-            <div className="text-center mb-8">
-                <h2 className="text-4xl font-medium underline">Your Selected Service: <span className="text-[#FF3811]">{title}</span></h2>
-            </div>
+          <div className="text-center mb-8">
+            <h2 className="text-4xl font-medium underline">
+              Your Selected Service:{" "}
+              <span className="text-[#FF3811]">{title}</span>
+            </h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <label htmlFor="name" className="block text-[#444444] text-xl">
@@ -127,7 +130,7 @@ const Checkout = () => {
                 id="cost"
                 className="border p-2 w-full"
                 // placeholder="Total Cost"
-                defaultValue={"$"+price}
+                defaultValue={"$" + price}
               />
             </div>
           </div>
