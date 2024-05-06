@@ -34,9 +34,14 @@ const Navbar = () => {
         <NavLink to="/signup">SignUp</NavLink>
       </li>
       {user?.email ? (
-        <li>
-          <button onClick={handleLogout}>Sign out</button>
-        </li>
+        <>
+          <li>
+            <NavLink to="/bookingOrder">Booking Orders</NavLink>
+          </li>
+          <li>
+            <button onClick={handleLogout}>Sign out</button>
+          </li>
+        </>
       ) : (
         <li>
           <Link to="/signin">Sign in</Link>
