@@ -15,7 +15,7 @@ const ServiceCard = ({ service }) => {
           <div className="card-actions flex items-center">
             <p className="text-[#FF3811] font-bold">Price:${price}</p>
             <button className="btn btn-ghost text-[#FF3811] text-xl hover:bg-[#FF3811] hover:text-white hover:scale-90">
-              <Link to={`/serviceType/${_id}`}>
+              <Link to={`/checkout/${_id}`}>
                 <FaArrowRightLong></FaArrowRightLong>
               </Link>
             </button>
