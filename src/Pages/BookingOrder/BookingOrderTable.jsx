@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
 
-const BookingOrderTable = ({ data,handleDelete }) => {
-  const { _id, customerName, date, img, total_cost, service, email } = data;
+const BookingOrderTable = ({ data, handleDelete, handleUpdate }) => {
+  const { _id, customerName, date, img, total_cost, service, email, status } =
+    data;
 
   return (
     <tr>
@@ -37,7 +38,16 @@ const BookingOrderTable = ({ data,handleDelete }) => {
       <td>{total_cost}</td>
       <td>{date}</td>
       <th>
-        <button className="btn bg-[#FF3811] text-white btn-xs">Pending</button>
+        {status ? (
+          <span className="bg-white text-[#FF3811] font-bold">Confirmed</span>
+        ) : (
+          <button
+            onClick={() => handleUpdate(_id)}
+            className="btn bg-[#FF3811] text-white btn-xs"
+          >
+            confirm
+          </button>
+        )}
       </th>
     </tr>
   );
@@ -45,6 +55,7 @@ const BookingOrderTable = ({ data,handleDelete }) => {
 
 BookingOrderTable.propTypes = {
   data: PropTypes.object,
-  handleDelete:PropTypes.func,
+  handleDelete: PropTypes.func,
+  handleUpdate: PropTypes.func,
 };
 export default BookingOrderTable;

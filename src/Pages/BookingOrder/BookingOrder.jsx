@@ -10,6 +10,13 @@ const BookingOrder = () => {
   const { user } = useContext(AuthContext);
   const [bookingOrdersData, setBookingOrdersData] = useState([]);
 
+  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  useEffect(() => {
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setBookingOrdersData(data));
+  }, [url]);
+
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -34,20 +41,33 @@ const BookingOrder = () => {
               Swal.fire({
                 title: "Deleted!",
                 text: "Your file has been deleted.",
-                icon: "success"
+                icon: "success",
               });
             }
           });
       }
     });
   };
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setBookingOrdersData(data));
-  }, [url]);
-  console.log(bookingOrdersData);
+
+  const handleUpdate=(id)=>{
+    fetch(`http://localhost:5000/bookings/${id}`,{
+      method:"PATCH",
+      headers:{
+        "content-type":"application/json"
+      },
+      body:JSON.stringify({status:"confirm"})
+    })
+    .then(res => res.json())
+    .then(data =>{
+      if(data.modifiedCount>0){
+        const remaining=bookingOrdersData.filter(data=>data._id !== id)
+        const updated=bookingOrdersData.find(data=>data._id === id);
+        updated.status="confirm";
+        const newBookingData=[updated,...remaining];
+        setBookingOrdersData(newBookingData);
+      }
+    })
+  }
   return (
     <div className="max-w-7xl mx-auto mb-10">
       <div>
@@ -94,6 +114,7 @@ const BookingOrder = () => {
                 key={idx}
                 data={data}
                 handleDelete={handleDelete}
+                handleUpdate={handleUpdate}
               ></BookingOrderTable>
             ))}
           </tbody>
