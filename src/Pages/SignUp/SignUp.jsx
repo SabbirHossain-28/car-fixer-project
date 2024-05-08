@@ -2,12 +2,11 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../Shared/Header/Navbar";
 import signupImg from "../../assets/images/login/login.svg";
 import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
-import { useContext } from "react";
-import { AuthContext } from "../../AuthContextProvider/AuthContextProvider";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 const SignUp = () => {
-  const { createUser, updateUserInfo, signOutUser } = useContext(AuthContext);
+  const { createUser, updateUserInfo, signOutUser } = useAuth()
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();

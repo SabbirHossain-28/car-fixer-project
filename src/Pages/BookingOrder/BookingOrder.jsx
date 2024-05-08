@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import Navbar from "../../Shared/Header/Navbar";
 import bannerImg from "../../assets/images/homeCarousel/3.jpg";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../AuthContextProvider/AuthContextProvider";
+import { useEffect, useState } from "react";
 import BookingOrderTable from "./BookingOrderTable";
 import Swal from "sweetalert2";
 import axios from "axios";
+import useAuth from "../../Hooks/useAuth";
 
 const BookingOrder = () => {
-  const { user } = useContext(AuthContext);
+  const {user}=useAuth();
   const [bookingOrdersData, setBookingOrdersData] = useState([]);
 
   const url = `http://localhost:5000/bookings?email=${user?.email}`;

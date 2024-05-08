@@ -1,14 +1,12 @@
 import signinImg from "../../assets/images/login/login.svg";
 import { FaFacebook, FaGoogle, FaLinkedinIn } from "react-icons/fa";
 import { Link, useLocation, useNavigate} from "react-router-dom";
-import { useContext } from "react";
 import Swal from "sweetalert2";
 import Navbar from "../../Shared/Header/Navbar";
-import { AuthContext } from "../../AuthContextProvider/AuthContextProvider";
-import axios from "axios";
+import useAuth from "../../Hooks/useAuth";
 
 const SignIn = () => {
-  const { signInUser } = useContext(AuthContext);
+  const {signInUser}=useAuth();
   const location=useLocation();
   const navigate=useNavigate();
 
@@ -19,24 +17,17 @@ const SignIn = () => {
     const password = form.password.value;
     signInUser(email, password)
     .then((userCredential) => {
-       const loggedInUser=userCredential.user;
-       console.log(loggedInUser);
-       const userInfo={email};
-       axios.post("http://localhost:5000/jwt",userInfo,{withCredentials:true})
-       .then(res=>{
-        console.log(res.data);
-        if (res.data.success) {
-          console.log(userCredential.user);
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "User login Successful",
-            showConfirmButton: true,
-          });
-          form.reset();
-          navigate(location?.state?location?.state:"/" ,{replace:true})
-        }
-       })
+      if (userCredential) {
+        console.log(userCredential.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User login Successful",
+          showConfirmButton: true,
+        });
+        form.reset();
+        navigate(location?.state?location?.state:"/" ,{replace:true})
+      }
     })
     .then(error=>{
       console.error(error);

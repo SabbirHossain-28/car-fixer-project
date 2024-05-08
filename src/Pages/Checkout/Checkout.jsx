@@ -1,13 +1,12 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Navbar from "../../Shared/Header/Navbar";
 import bannerImg from "../../assets/images/checkout/checkout.png";
-import { useContext } from "react";
-import { AuthContext } from "../../AuthContextProvider/AuthContextProvider";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
 const Checkout = () => {
+  const {user}=useAuth()
   const loadedServiceData = useLoaderData();
-  const { user } = useContext(AuthContext);
   console.log(user);
   const { title, price, _id, img } = loadedServiceData;
 
