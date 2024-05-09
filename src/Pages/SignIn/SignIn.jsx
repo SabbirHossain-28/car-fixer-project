@@ -18,7 +18,7 @@ const SignIn = () => {
     signInUser(email, password)
     .then((userCredential) => {
       if (userCredential) {
-        console.log(userCredential.user);
+        // console.log(userCredential.user);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -29,9 +29,9 @@ const SignIn = () => {
         navigate(location?.state?location?.state:"/" ,{replace:true})
       }
     })
-    .then(error=>{
-      console.error(error);
-    })
+    // .then(error=>{
+    //   console.error(error);
+    // })
   };
   return (
     <div className="max-w-7xl mx-auto">

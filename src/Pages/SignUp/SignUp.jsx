@@ -14,11 +14,11 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    // console.log(name, email, password);
     createUser(email, password).then((userCredential) => {
       updateUserInfo(name).then(() => {
         if (userCredential) {
-          console.log(userCredential.user);
+          // console.log(userCredential.user);
           Swal.fire({
             position: "center",
             icon: "success",

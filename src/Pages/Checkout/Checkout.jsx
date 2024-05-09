@@ -7,7 +7,7 @@ import useAuth from "../../Hooks/useAuth";
 const Checkout = () => {
   const {user}=useAuth()
   const loadedServiceData = useLoaderData();
-  console.log(user);
+  // console.log(user);
   const { title, price, _id, img } = loadedServiceData;
 
   const handleSubmit = (e) => {
@@ -26,9 +26,9 @@ const Checkout = () => {
       service: title,
       img,
     };
-    console.log(order);
+    // console.log(order);
 
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://car-fixer-server.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -46,9 +46,9 @@ const Checkout = () => {
           });
         }
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      // .catch((error) => {
+      //   console.error(error);
+      // });
   };
   return (
     <div className="max-w-7xl mx-auto mb-10">

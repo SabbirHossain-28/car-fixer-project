@@ -7,9 +7,9 @@ const Navbar = () => {
   const handleLogout = () => {
     signOutUser()
       .then(() => {})
-      .catch((error) => {
-        console.error(error);
-      });
+      // .catch((error) => {
+      //   console.error(error);
+      // });
   };
 
   const navbarLinks = (

@@ -13,7 +13,7 @@ const BookingOrder = () => {
   const [bookingOrdersData, setBookingOrdersData] = useState([]);
   const axiosSecure=useAxiosSecure();
 
-  // const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  // const url = `https://car-fixer-server.vercel.app/bookings?email=${user?.email}`;
   const url = `/bookings?email=${user?.email}`;
   useEffect(() => {
     axiosSecure.get(url)
@@ -33,7 +33,7 @@ const BookingOrder = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${id}`, {
+        fetch(`https://car-fixer-server.vercel.app/bookings/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -55,7 +55,7 @@ const BookingOrder = () => {
   };
 
   const handleUpdate=(id)=>{
-    fetch(`http://localhost:5000/bookings/${id}`,{
+    fetch(`https://car-fixer-server.vercel.app/bookings/${id}`,{
       method:"PATCH",
       headers:{
         "content-type":"application/json"

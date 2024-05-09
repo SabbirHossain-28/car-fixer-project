@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
     }
     return ratingInputs;
   };
-console.log(renderRatingInputs());
+// console.log(renderRatingInputs());
   return (
     <div>
       <div className="card w-96 bg-base-100 shadow-xl">

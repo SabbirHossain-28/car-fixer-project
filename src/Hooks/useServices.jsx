@@ -5,7 +5,7 @@ const useServices = () => {
     const [services,setServices]=useState([]);
     
     useEffect(()=>{
-        axios.get("http://localhost:5000/services")
+        axios.get("https://car-fixer-server.vercel.app/services")
         .then(res=>{
             setServices(res.data)
         })

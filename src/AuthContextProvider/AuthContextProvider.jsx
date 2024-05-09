@@ -44,20 +44,20 @@ const AuthContextProvider = ({ children }) => {
       setUser(currentUser);
       setLoading(false);
       if(currentUser){
-        axios.post("http://localhost:5000/jwt",activeUser,{withCredentials:true})
-        .then(res =>{
-          console.log("Response coming from server",res.data);
-        })
+        axios.post("https://car-fixer-server.vercel.app/jwt",activeUser,{withCredentials:true})
+        // .then(res =>{
+        //   console.log("Response coming from server",res.data);
+        // })
       }
       else{
-        axios.post("http://localhost:5000/logout",activeUser,{withCredentials:true})
-        .then(res =>{
-          console.log(res.data);
-        })
+        axios.post("https://car-fixer-server.vercel.app/logout",activeUser,{withCredentials:true})
+        // .then(res =>{
+        //   console.log(res.data);
+        // })
       }
     });
     return () => unsubscribe();
-  }, [auth]);
+  }, [auth,user]);
 
   const authInfo = {
     user,

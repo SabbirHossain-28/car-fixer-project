@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useNavigate } from "react-router-dom";
 
 const axiosSecure=axios.create({
-    baseURL:"http://localhost:5000",
+    baseURL:"https://car-fixer-server.vercel.app",
     withCredentials:true,
 })
 const useAxiosSecure = () => {
@@ -15,19 +15,16 @@ const useAxiosSecure = () => {
             return res;
         },
     error=>{
-        console.log(error.response);
-        console.log("Error track by interceptor",error.response);
+        // console.log(error.response);
+        // console.log("Error track by interceptor",error.response);
         if(error.response.status ===401 || error.response.status ===403){
             signOut()
             .then(()=>{
                 navigate("/signin")
             })
-            .catch(error =>{
-                console.error(error);
-            })
         }
     })
-    },[])
+    },[navigate,signOut])
     return axiosSecure
 };
 
