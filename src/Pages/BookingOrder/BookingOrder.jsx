@@ -4,20 +4,23 @@ import bannerImg from "../../assets/images/homeCarousel/3.jpg";
 import { useEffect, useState } from "react";
 import BookingOrderTable from "./BookingOrderTable";
 import Swal from "sweetalert2";
-import axios from "axios";
+// import axios from "axios";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const BookingOrder = () => {
   const {user}=useAuth();
   const [bookingOrdersData, setBookingOrdersData] = useState([]);
+  const axiosSecure=useAxiosSecure();
 
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  // const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `/bookings?email=${user?.email}`;
   useEffect(() => {
-    axios.get(url,{withCredentials:true})
+    axiosSecure.get(url)
     .then(res=>{
       setBookingOrdersData(res.data)
     })
-  }, [url]);
+  }, [url,axiosSecure]);
 
   const handleDelete = (id) => {
     Swal.fire({
